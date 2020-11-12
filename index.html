@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+	<html lang="pt-br">
+
+	<!-- Cabeçalho -->
+	<head>
+		<meta charset="utf-8">
+		<title> Aula de Programação Web </title>
+		<meta name="author" content="Kaio Ferreira">
+		<meta name="description" content="Aula de Programação Web ">
+		<link rel="stylesheet" href="css/estilo.css" >
+	</head>
+
+	<!-- Corpo do Documento -->
+	<body>
+		
+		<div class="principal">
+
+		<!-- 
+        Cabeçalho  da página
+		<header>cabeçalho</header>
+        -->
+        
+        <!-- 
+        Menu do Site 
+		<nav>Menu</nav>
+        -->
+        
+        <!-- Conteúdo Principal-->
+		<section>            
+            <article id="conteudo"><article>            
+		</section>
+
+        
+        
+        
+        <!--
+        Conteúdo Relacionado, colocar ou não
+		<aside></aside>
+        -->
+        
+        <!--  
+        Rodapé do site-->
+        <footer>
+            <script>
+                fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json())
+                .then(json => {
+                     const div = document.getElementById("conteudo");
+                     div.innerText = JSON.stringify(json)
+                     console.log(json)
+                })
+            </script>
+        </footer>
+        
+
+		</div>
+
+	</body>
+
+</html>
+
+ 
