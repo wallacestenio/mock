@@ -1,62 +1,70 @@
 <!DOCTYPE html>
-	<html lang="pt-br">
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuários</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Usuários</h1>
+    <table id="tabela-usuarios">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Cidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As linhas da tabela serão inseridas aqui dinamicamente -->
+        </tbody>
+    </table>
 
-	<!-- Cabeçalho -->
-	<head>
-		<meta charset="utf-8">
-		<title> Aula de Programação Web </title>
-		<meta name="author" content="Kaio Ferreira">
-		<meta name="description" content="Aula de Programação Web ">
-		<link rel="stylesheet" href="css/estilo.css" >
-	</head>
+    <script>
+        // Faz uma requisição HTTP GET para a URL especificada
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json()) // Converte a resposta para JSON
+            .then(usuarios => {
+                // Obtém a referência para o corpo da tabela
+                const tbody = document.querySelector("#tabela-usuarios tbody");
 
-	<!-- Corpo do Documento -->
-	<body>
-		
-		<div class="principal">
+                // Itera sobre cada usuário no array de usuários
+                usuarios.forEach(usuario => {
+                    // Cria uma nova linha na tabela
+                    const linha = document.createElement("tr");
 
-		<!-- 
-        Cabeçalho  da página
-		<header>cabeçalho</header>
-        -->
-        
-        <!-- 
-        Menu do Site 
-		<nav>Menu</nav>
-        -->
-        
-        <!-- Conteúdo Principal-->
-		<section>            
-            <article id="conteudo"><article>            
-		</section>
+                    // Adiciona as células com os dados do usuário
+                    linha.innerHTML = `
+                        <td>${usuario.id}</td>
+                        <td>${usuario.name}</td>
+                        <td>${usuario.email}</td>
+                        <td>${usuario.phone}</td>
+                        <td>${usuario.address.city}</td>
+                    `;
 
-        
-        
-        
-        <!--
-        Conteúdo Relacionado, colocar ou não
-		<aside></aside>
-        -->
-        
-        <!--  
-        Rodapé do site-->
-        <footer>
-            <script>
-                fetch('https://jsonplaceholder.typicode.com/users')
-                .then(response => response.json())
-                .then(json => {
-                     const div = document.getElementById("conteudo");
-                     div.innerText = JSON.stringify(json)
-                     console.log(json)
-                })
-            </script>
-        </footer>
-        
-
-		</div>
-
-	</body>
-
+                    // Adiciona a linha ao corpo da tabela
+                    tbody.appendChild(linha);
+                });
+            })
+            .catch(error => {
+                console.error("Erro ao buscar os dados:", error);
+            });
+    </script>
+</body>
 </html>
-
- 
